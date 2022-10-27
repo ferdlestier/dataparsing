@@ -1,8 +1,9 @@
+# The idea of this script is to run a showcase on how to parse a csv file, with data from my portfolio
+#For that we'll only use pandas
+
 import pandas as pd
-from datetime import date
 
-today=date.today().strftime('%Y%m%d')
-
+#From the dataset I'll run different portfolio analysis by filtering only certain columns out of the dataset at a time
 colsprice = ['ticker',
              'chgPct6M',
              'chgPctMovAvg100D',
@@ -54,28 +55,34 @@ fundamentals = ['ticker',
          'freeCashFlowPerSh',
          'industryGroup']
 
+# First, we'll show the daily movers, that is, the instruments high higher price change in 1 day (column chgPct1D)
 # Tracking Daily Movers
 
 ##### a) Top 20 daily growth
 
+#Import the .csv file as a dataframe
 port = pd.read_csv('minhaReq2.20220126.csv', index_col=False)
+# From the imported dataframe we'll only use the cols columns and sort them by 'chgPct1D' in descending order
 dailymovers = port[cols].sort_values(by='chgPct1D',ascending=False).fillna('-').set_index('ticker')
+# Diplaying only the first 20 records with .head()
 dailymovers.head(20)
 
 ##### b) Top 20 daily loss 
 
+# Diplaying only the last 20 records with .tail()
 dailymovers.tail(20)
-
-port.columns
 
 # Tracking the Price Movement - Medium Term
 
+# Now following the same steps but sorting by the column 'chgPct6M' which represents the change in price for the last 6 months.
+# The idea is to get a medium term price change
 pricetracker = port[colsprice].sort_values(by='chgPct6M',ascending=False).set_index('ticker').head(20).fillna('-')
 pricetracker
 
 pricetrackerloss = port[colsprice].sort_values(by='chgPct6M',ascending=False).set_index('ticker').tail(20).fillna('-')
 pricetrackerloss
 
+# Creating a new column to calculate the difference between Analyst Recommendations and last price
 P_t = port[colsprice].set_index('ticker').fillna('0')
 P_t['bestTargetPrice'] = P_t['bestTargetPrice'].astype(float)
 
@@ -83,7 +90,7 @@ p_e = P_t[P_t['bestTargetPrice'] != 0.0]
 p_e['pE'] = p_e['bestTargetPrice'] / p_e['pxLast'] -1
 p_e.sort_values(by='pE', ascending=False)
 
-# Ranking by ANR Growth Potential
+# Ranking by Growth Potential (Analyst Recommendation / Last Price)
 
 p_e = P_t[P_t['bestTargetPrice'] != 0.0]
 p_e['pE'] = p_e['bestTargetPrice'] / p_e['pxLast'] -1
