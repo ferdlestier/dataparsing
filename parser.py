@@ -1,9 +1,9 @@
 # The idea of this script is to run a showcase on how to parse a csv file, with data from my portfolio
-#For that we'll only use pandas
+# For that we'll only use pandas
 
 import pandas as pd
 
-#From the dataset I'll run different portfolio analysis by filtering only certain columns out of the dataset at a time
+# From the dataset I'll run different portfolio analysis by filtering only certain columns out of the dataset at a time
 colsprice = ['ticker',
              'chgPct6M',
              'chgPctMovAvg100D',
