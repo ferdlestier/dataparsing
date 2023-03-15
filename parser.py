@@ -129,4 +129,4 @@ grupos = ['Diversified Finan Serv', 'Software', 'REITS',
 
 for grupo in grupos:
     industria = fund_data[fund_data['industryGroup'] == str(grupo)].sort_values(by='ebitdaToRevenue',ascending=False)
-    display(industria)
+    industria
