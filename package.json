@@ -1,0 +1,19 @@
+{
+  "name": "dataparsing",
+  "version": "1.0.0",
+  "description": "Basics of Data Analysis using pandas",
+  "main": "parser.py",
+  "scripts": {
+    "test": "exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ferdlestier/dataparsing.git"
+  },
+  "author": "ferdlestier",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ferdlestier/dataparsing/issues"
+  },
+  "homepage": "https://github.com/ferdlestier/dataparsing#readme"
+}
