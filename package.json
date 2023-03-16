@@ -1,5 +1,5 @@
 {
-  "name": "dataparsing",
+  "name": "@ferdlestier/datapackage",
   "version": "1.0.0",
   "description": "Basics of Data Analysis using pandas",
   "main": "parser.py",
