@@ -1,10 +1,10 @@
 name: Parser Package
 
-#on:
-#  release:
-#    types: [created]
 on:
-   workflow_dispatch:
+  release:
+    types: [created]
+#on:
+#   workflow_dispatch:
 
 jobs:
   build:
