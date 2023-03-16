@@ -1,6 +1,6 @@
 {
   "name": "@ferdlestier/datapackage",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "Basics of Data Analysis using pandas",
   "main": "parser.py",
   "scripts": {
