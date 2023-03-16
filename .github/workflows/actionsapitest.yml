@@ -1,3 +1,5 @@
+name: ActionsAPITest
+
 on:
    workflow_dispatch:
 
