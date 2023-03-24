@@ -1,0 +1,14 @@
+name: Test Vulnerability
+
+on:
+   workflow_dispatch:
+
+jobs:
+  auto-assign:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Auto-assign issue'
+        uses: pozil/auto-assign-issue@v1.0.3
+        with:
+            repo-token: ghptoken_564GyHgsd9eHRk
+            assignees: ferdlestier
