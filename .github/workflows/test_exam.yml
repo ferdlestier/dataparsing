@@ -1,20 +1,20 @@
 name: "Hello Actions"
-description: "Greet Someone"
-author: "octocat@github.com"
 
 on:
     workflow_dispatch:
 
-inputs:
-    MY_NAME:
-    description: "Who to greet"
-    required: true
-    default: "World"
+jobs:
+    - name: "Greeting"
+      inputs:
+            MY_NAME:
+            description: "Who to greet"
+            required: true
+            default: "World"
 
-runs:
-    usses: "docker"
-    image: "Dockerfile"
+      runs:
+            usses: "docker"
+            image: "Dockerfile"
     
-branding:
-    icon: "mic"
-    color: "purple"
+      branding:
+            icon: "mic"
+            color: "purple"
