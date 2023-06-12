@@ -1,20 +1,12 @@
-name: "Hello Actions"
-
-on:
-    workflow_dispatch:
-
-jobs:
-    - name: "Greeting"
-      inputs:
-            MY_NAME:
-            description: "Who to greet"
-            required: true
-            default: "World"
-
-      runs:
-            usses: "docker"
-            image: "Dockerfile"
-    
-      branding:
-            icon: "mic"
-            color: "purple"
+ name: Hello Mona
+ on:
+   push:
+     branches:
+       - master
+   workflow_dispatch:
+   
+ jobs:
+   build:
+     runs-on: ubuntu-latest
+     steps:
+       - run: echo "Hello Mona!"
