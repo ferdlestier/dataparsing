@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ferdlestier/dataparsing/issues"
   },
-  "homepage": "https://github.com/ferdlestier/dataparsing#readme"
+  "homepage": "https://github.com/ferdlestier/dataparsing#readme",
+  "dependencies": {
+    "pandas": "1.5.3"
+  }
 }
