@@ -1,0 +1,37 @@
+import unittest
+import importlib
+
+class TestRequirements(unittest.TestCase):
+
+    def test_pandas_dependency(self):
+        try:
+            importlib.import_module('pandas')
+        except ImportError:
+            self.fail("pandas is not installed")
+
+    def test_requests_dependency(self):
+        try:
+            importlib.import_module('requests')
+        except ImportError:
+            self.fail("requests is not installed")
+
+    def test_retrying_dependency(self):
+        try:
+            importlib.import_module('retrying')
+        except ImportError:
+            self.fail("retrying is not installed")
+
+    def test_pyjwt_dependency(self):
+        try:
+            importlib.import_module('jwt')
+        except ImportError:
+            self.fail("PyJWT is not installed")
+
+    def test_pytz_dependency(self):
+        try:
+            importlib.import_module('pytz')
+        except ImportError:
+            self.fail("pytz is not installed")
+
+if __name__ == '__main__':
+    unittest.main()
