@@ -94,7 +94,7 @@ try:
     P_t = port[colsprice].set_index('ticker').fillna('0')
     P_t['bestTargetPrice'] = P_t['bestTargetPrice'].astype(float)
 
-    p_e = P_t[P_t['bestTargetPrice'] != 0.0]
+    p_e = P_t[P_t['bestTargetPrice'] != 0.0].copy()
     p_e.loc[:, 'pE'] = p_e['bestTargetPrice'] / p_e['pxLast'] - 1
     p_e.sort_values(by='pE', ascending=False)
     logging.info("Growth potential based on Analyst Recommendations calculated")
