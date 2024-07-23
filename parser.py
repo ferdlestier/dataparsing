@@ -95,7 +95,7 @@ try:
     P_t['bestTargetPrice'] = P_t['bestTargetPrice'].astype(float)
 
     p_e = P_t[P_t['bestTargetPrice'] != 0.0]
-    p_e['pE'] = p_e['bestTargetPrice'] / p_e['pxLast'] -1
+    p_e.loc[:, 'pE'] = p_e['bestTargetPrice'] / p_e['pxLast'] - 1
     p_e.sort_values(by='pE', ascending=False)
     logging.info("Growth potential based on Analyst Recommendations calculated")
     logging.info(f"Number of records processed for growth potential: {len(p_e)}")
