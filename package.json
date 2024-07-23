@@ -1,6 +1,6 @@
 {
   "name": "@ferdlestier/datapackage",
-  "version": "1.0.2",
+  "version": "2.0.1",
   "description": "Basics of Data Analysis using pandas",
   "main": "parser.py",
   "scripts": {
@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/ferdlestier/dataparsing#readme",
   "dependencies": {
-    "pandas": "1.5.3"
+    "pandas": ">2.0.3",
   }
 }
