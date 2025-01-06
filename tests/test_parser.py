@@ -2,6 +2,8 @@ import unittest
 import logging
 import pandas as pd
 from parser import main
+from fpdf import FPDF
+import os
 
 class TestParser(unittest.TestCase):
 
@@ -10,10 +12,12 @@ class TestParser(unittest.TestCase):
         self.log_file = 'parser.log'
         self.csv_file = 'minhaReq2.20220126.csv'
         self.df = pd.read_csv(self.csv_file)
+        self.pdf_file = 'report.pdf'
 
     def tearDown(self):
         # Clean up after tests
-        pass
+        if os.path.exists(self.pdf_file):
+            os.remove(self.pdf_file)
 
     def test_script_execution(self):
         # Test the execution of the parser script
@@ -48,6 +52,28 @@ class TestParser(unittest.TestCase):
         dailymovers = self.df.sort_values(by='chgPct1D', ascending=False).head(20)
         self.assertEqual(len(dailymovers), 20)
         self.assertIn('ticker', dailymovers.columns)
+
+    def test_pdf_generation(self):
+        # Test the PDF report generation
+        main()
+        self.assertTrue(os.path.exists(self.pdf_file))
+
+        # Check if the PDF contains expected data
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font("Arial", size=12)
+        pdf.output(self.pdf_file)
+
+        with open(self.pdf_file, 'rb') as pdf_file:
+            content = pdf_file.read()
+            self.assertIn(b'Top 20 Daily Movers', content)
+            self.assertIn(b'Top 20 Daily Losers', content)
+            self.assertIn(b'Top 20 Medium Term Price Change (Growth)', content)
+            self.assertIn(b'Top 20 Medium Term Price Change (Loss)', content)
+            self.assertIn(b'Growth Potential Based on Analyst Recommendations', content)
+            self.assertIn(b'Top 20 Financial Exposure', content)
+            self.assertIn(b'Top 20 Return on Invested Capital', content)
+            self.assertIn(b'Top 20 Fundamental Data', content)
 
 if __name__ == '__main__':
     unittest.main()
