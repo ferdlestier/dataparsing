@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Data Output</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+  <style>
+    body { margin: 2em; }
+    h1, h2 { margin-top: 1.5em; }
+    .table-container { margin-bottom: 3em; }
+    iframe { background: #fff; border: 1px solid #ccc; width: 100%; min-height: 400px; }
+  </style>
+</head>
+<body>
+  <h1>Portfolio Data Output</h1>
+  <div class="table-container">
+    <h2>Top 20 Daily Movers</h2>
+    <iframe src="dailymovers.html" title="Daily Movers"></iframe>
+  </div>
+  <div class="table-container">
+    <h2>Top 20 Six-Month Price Changes</h2>
+    <iframe src="pricetracker.html" title="Price Tracker"></iframe>
+  </div>
+  <div>
+    <small>Generated automatically from <code>parser.py</code>. Data updates when code is re-run and pushed.<br>
+      <a href="https://github.com/ferdlestier/dataparsing">View source on GitHub</a>
+    </small>
+  </div>
+</body>
+</html>
