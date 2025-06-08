@@ -1,3 +1,0 @@
-# Ignore raw CSV files and logs in the docs folder (don't publish them to Pages)
-docs/*.csv
-docs/*.log
