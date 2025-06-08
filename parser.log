@@ -258,3 +258,69 @@
 2025-06-08 02:06:23,561:INFO:Fundamental data compared across industry group: Insurance
 2025-06-08 02:06:23,561:INFO:Number of records processed for industry group Insurance: 1
 2025-06-08 02:06:23,561:INFO:Script completed successfully
+2025-06-08 02:07:21,879:INFO:Script started
+2025-06-08 02:07:21,883:INFO:CSV file loaded successfully
+2025-06-08 02:07:21,883:INFO:Number of records in CSV: 82
+2025-06-08 02:07:21,885:INFO:Top 20 daily growth calculated
+2025-06-08 02:07:21,885:INFO:Number of records processed for daily growth: 82
+2025-06-08 02:07:21,885:INFO:Top 20 daily loss calculated
+2025-06-08 02:07:21,885:INFO:Number of records processed for daily loss: 82
+2025-06-08 02:07:21,889:INFO:Daily movers HTML table exported to docs/dailymovers.html
+2025-06-08 02:07:21,890:INFO:Medium term price change (growth) calculated
+2025-06-08 02:07:21,890:INFO:Number of records processed for medium term price change (growth): 20
+2025-06-08 02:07:21,892:INFO:Medium term price change (loss) calculated
+2025-06-08 02:07:21,892:INFO:Number of records processed for medium term price change (loss): 20
+2025-06-08 02:07:21,895:INFO:Price tracker HTML table exported to docs/pricetracker.html
+2025-06-08 02:07:21,898:INFO:Growth potential based on Analyst Recommendations calculated
+2025-06-08 02:07:21,898:INFO:Number of records processed for growth potential: 54
+2025-06-08 02:07:21,899:INFO:Financial exposure tracked
+2025-06-08 02:07:21,899:INFO:Number of records processed for financial exposure: 82
+2025-06-08 02:07:21,901:INFO:Return on Invested Capital tracked
+2025-06-08 02:07:21,901:INFO:Number of records processed for return on invested capital: 82
+2025-06-08 02:07:21,902:INFO:Fundamental data tracked
+2025-06-08 02:07:21,902:INFO:Number of records processed for fundamental data: 82
+2025-06-08 02:07:21,902:INFO:Fundamental data compared across industry group: Diversified Finan Serv
+2025-06-08 02:07:21,902:INFO:Number of records processed for industry group Diversified Finan Serv: 6
+2025-06-08 02:07:21,903:INFO:Fundamental data compared across industry group: Software
+2025-06-08 02:07:21,903:INFO:Number of records processed for industry group Software: 15
+2025-06-08 02:07:21,903:INFO:Fundamental data compared across industry group: REITS
+2025-06-08 02:07:21,903:INFO:Number of records processed for industry group REITS: 2
+2025-06-08 02:07:21,903:INFO:Fundamental data compared across industry group: Commercial Services
+2025-06-08 02:07:21,903:INFO:Number of records processed for industry group Commercial Services: 2
+2025-06-08 02:07:21,904:INFO:Fundamental data compared across industry group: Real Estate
+2025-06-08 02:07:21,904:INFO:Number of records processed for industry group Real Estate: 1
+2025-06-08 02:07:21,904:INFO:Fundamental data compared across industry group: Electric
+2025-06-08 02:07:21,904:INFO:Number of records processed for industry group Electric: 1
+2025-06-08 02:07:21,904:INFO:Fundamental data compared across industry group: Semiconductors
+2025-06-08 02:07:21,904:INFO:Number of records processed for industry group Semiconductors: 4
+2025-06-08 02:07:21,905:INFO:Fundamental data compared across industry group: Computers
+2025-06-08 02:07:21,905:INFO:Number of records processed for industry group Computers: 1
+2025-06-08 02:07:21,905:INFO:Fundamental data compared across industry group: Internet
+2025-06-08 02:07:21,905:INFO:Number of records processed for industry group Internet: 4
+2025-06-08 02:07:21,905:INFO:Fundamental data compared across industry group: Oil&Gas Services
+2025-06-08 02:07:21,905:INFO:Number of records processed for industry group Oil&Gas Services: 1
+2025-06-08 02:07:21,906:INFO:Fundamental data compared across industry group: Healthcare-Products
+2025-06-08 02:07:21,906:INFO:Number of records processed for industry group Healthcare-Products: 1
+2025-06-08 02:07:21,906:INFO:Fundamental data compared across industry group: Private Equity
+2025-06-08 02:07:21,906:INFO:Number of records processed for industry group Private Equity: 1
+2025-06-08 02:07:21,906:INFO:Fundamental data compared across industry group: Cosmetics/Personal Care
+2025-06-08 02:07:21,906:INFO:Number of records processed for industry group Cosmetics/Personal Care: 2
+2025-06-08 02:07:21,907:INFO:Fundamental data compared across industry group: Oil&Gas
+2025-06-08 02:07:21,907:INFO:Number of records processed for industry group Oil&Gas: 1
+2025-06-08 02:07:21,907:INFO:Fundamental data compared across industry group: Retail
+2025-06-08 02:07:21,907:INFO:Number of records processed for industry group Retail: 1
+2025-06-08 02:07:21,907:INFO:Fundamental data compared across industry group: Home Furnishings
+2025-06-08 02:07:21,907:INFO:Number of records processed for industry group Home Furnishings: 1
+2025-06-08 02:07:21,908:INFO:Fundamental data compared across industry group: Auto Manufacturers
+2025-06-08 02:07:21,908:INFO:Number of records processed for industry group Auto Manufacturers: 4
+2025-06-08 02:07:21,908:INFO:Fundamental data compared across industry group: Pharmaceuticals
+2025-06-08 02:07:21,908:INFO:Number of records processed for industry group Pharmaceuticals: 1
+2025-06-08 02:07:21,908:INFO:Fundamental data compared across industry group: Apparel
+2025-06-08 02:07:21,908:INFO:Number of records processed for industry group Apparel: 1
+2025-06-08 02:07:21,909:INFO:Fundamental data compared across industry group: Biotechnology
+2025-06-08 02:07:21,909:INFO:Number of records processed for industry group Biotechnology: 5
+2025-06-08 02:07:21,909:INFO:Fundamental data compared across industry group: Banks
+2025-06-08 02:07:21,909:INFO:Number of records processed for industry group Banks: 1
+2025-06-08 02:07:21,909:INFO:Fundamental data compared across industry group: Insurance
+2025-06-08 02:07:21,909:INFO:Number of records processed for industry group Insurance: 1
+2025-06-08 02:07:21,909:INFO:Script completed successfully
