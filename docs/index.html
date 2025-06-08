@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Positions | Portfolio Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Inter:400,600&display=swap');
+    body {
+      background: radial-gradient(ellipse at top left, #333 60%, #16181c 100%);
+      color: #fff;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      padding: 0;
+    }
+    .container {
+      max-width: 960px;
+      margin: 48px auto;
+      padding: 32px 24px 56px 24px;
+      background: rgba(28, 30, 34, 0.96);
+      border-radius: 18px;
+      box-shadow: 0 4px 24px 0 rgba(10,10,12,0.18);
+    }
+    h1 {
+      font-size: 2.3rem;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      margin-bottom: 1.3em;
+      letter-spacing: 0.01em;
+    }
+    .info-icon {
+      display: inline-block;
+      width: 1.2em;
+      height: 1.2em;
+      vertical-align: text-bottom;
+    }
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: transparent;
+      font-size: 1.05rem;
+      margin-bottom: 0.5em;
+      box-shadow: 0 1px 0 0 #222;
+    }
+    th, td {
+      padding: 0.75em 0.7em;
+      text-align: left;
+      white-space: nowrap;
+    }
+    th {
+      font-weight: 600;
+      font-size: 1.05em;
+      color: #ededed;
+      background: rgba(44,46,52,0.85);
+      border-bottom: 2px solid #444;
+      position: sticky;
+      top: 0;
+      z-index: 2;
+      letter-spacing: 0.01em;
+    }
+    tbody tr {
+      border-radius: 11px;
+      transition: background 0.12s;
+    }
+    tbody tr:hover {
+      background: rgba(60,66,80,0.22);
+    }
+    td {
+      border-bottom: 1px solid #25262b;
+    }
+    .symbol {
+      font-weight: 600;
+      color: #fff;
+      letter-spacing: 0.03em;
+    }
+    .pos {
+      color: #e3ff7a;
+      font-weight: 500;
+    }
+    .pos-arrow {
+      color: #e3ff7a;
+      margin-right: .1em;
+      font-size: 1em;
+    }
+    .pos-pct {
+      color: #ffe957;
+      font-weight: 500;
+    }
+    .neg, .neg-pct {
+      color: #ff7676;
+      font-weight: 500;
+    }
+    .neg-arrow {
+      color: #ff7676;
+      margin-right: .1em;
+      font-size: 1em;
+    }
+    .neutral {
+      color: #fff;
+    }
+    .footer {
+      margin-top: 28px;
+      font-size: 0.96em;
+      color: #888;
+      text-align: right;
+      opacity: 0.7;
+    }
+    @media (max-width: 900px) {
+      .container { padding: 14px 1vw 34px 1vw; }
+      table { font-size: 0.99rem; }
+    }
+    @media (max-width: 600px) {
+      .container { padding: 0.5em 0.1em 3em 0.1em; }
+      th, td { padding: 0.45em 0.3em; }
+      h1 { font-size: 1.3rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>
+      Positions
+      <span class="info-icon">
+        <svg fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 20 20"><circle cx="10" cy="10" r="9" stroke-opacity="0.4"/><rect x="9" y="8" width="2" height="6" rx="1" fill="#fff" fill-opacity="0.85"/><rect x="9" y="5" width="2" height="2" rx="1" fill="#fff" fill-opacity="0.85"/></svg>
+      </span>
+    </h1>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr>
+            <th>Symbol &#8597;</th>
+            <th>Quantity</th>
+            <th>Mkt val</th>
+            <th>Mark</th>
+            <th>Avg pri...</th>
+            <th>Last</th>
+            <th>1D open P&amp;L</th>
+            <th>1D open P&amp;L %</th>
+            <th>Open P&amp;L</th>
+            <th>Open P&amp;L %</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Sample static rows below. Replace with dynamic rows from parser.py for production. -->
+          <tr>
+            <td class="symbol">ABR</td>
+            <td>34.238333</td>
+            <td>$350.60</td>
+            <td>$10.24</td>
+            <td>$13.19</td>
+            <td>$10.24</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$11.30</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>3.33%</td>
+            <td class="neg"><span class="neg-arrow">&#9660;</span>$100.93</td>
+            <td class="neg-pct"><span class="neg-arrow">&#9660;</span>22.35%</td>
+          </tr>
+          <tr>
+            <td class="symbol">AMDY</td>
+            <td>3.373328</td>
+            <td>$25.36</td>
+            <td>$7.52</td>
+            <td>$13.37</td>
+            <td>$7.52</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$0.27</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>1.06%</td>
+            <td class="neg"><span class="neg-arrow">&#9660;</span>$19.73</td>
+            <td class="neg-pct"><span class="neg-arrow">&#9660;</span>43.75%</td>
+          </tr>
+          <tr>
+            <td class="symbol">CONY</td>
+            <td>4.815431</td>
+            <td>$38.23</td>
+            <td>$7.94</td>
+            <td>$13.50</td>
+            <td>$7.94</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$1.11</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>2.98%</td>
+            <td class="neg"><span class="neg-arrow">&#9660;</span>$26.78</td>
+            <td class="neg-pct"><span class="neg-arrow">&#9660;</span>41.19%</td>
+          </tr>
+          <tr>
+            <td class="symbol">GLAD</td>
+            <td>12.33889</td>
+            <td>$332.04</td>
+            <td>$26.91</td>
+            <td>$21.76</td>
+            <td>$26.91</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$4.81</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>1.47%</td>
+            <td class="neg"><span class="neg-arrow">&#9660;</span>$63.58</td>
+            <td class="neg-pct"><span class="neg-arrow">&#9660;</span>23.68%</td>
+          </tr>
+          <tr>
+            <td class="symbol">IDV</td>
+            <td>5.31743</td>
+            <td>$182.39</td>
+            <td>$34.30</td>
+            <td>$27.85</td>
+            <td>$34.30</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$0.11</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>0.06%</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$34.30</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>23.16%</td>
+          </tr>
+          <tr>
+            <td class="symbol">JEPI</td>
+            <td>175.399607</td>
+            <td>$9,831.08</td>
+            <td>$56.05</td>
+            <td>$56.68</td>
+            <td>$56.05</td>
+            <td class="pos"><span class="pos-arrow">&#9650;</span>$49.04</td>
+            <td class="pos-pct"><span class="pos-arrow">&#9650;</span>0.50%</td>
+            <td class="neg"><span class="neg-arrow">&#9660;</span>$110.53</td>
+            <td class="neg-pct"><span class="neg-arrow">&#9660;</span>1.11%</td>
+          </tr>
+          <!-- Add more rows as needed to match your data -->
+        </tbody>
+      </table>
+    </div>
+    <div class="footer">
+      UI inspired by your uploaded design.<br>
+      <a href="https://github.com/ferdlestier/dataparsing">View source on GitHub</a>
+    </div>
+  </div>
+</body>
+</html>
