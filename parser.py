@@ -3,6 +3,8 @@
 
 import pandas as pd
 import logging  # Import logging module
+import matplotlib.pyplot as plt
+from fpdf import FPDF
 
 # Configure logging
 logging.basicConfig(filename='parser.log', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
@@ -131,6 +133,35 @@ try:
         industria
         logging.info(f"Fundamental data compared across industry group: {grupo}")
         logging.info(f"Number of records processed for industry group {grupo}: {len(industria)}")
+
+    # Generate PDF report
+    pdf = FPDF()
+    pdf.add_page()
+    pdf.set_font("Arial", size=12)
+
+    def add_dataframe_to_pdf(pdf, df, title):
+        pdf.set_font("Arial", 'B', 14)
+        pdf.cell(200, 10, txt=title, ln=True, align='C')
+        pdf.set_font("Arial", size=10)
+        pdf.ln(10)
+        for i in range(len(df)):
+            row = df.iloc[i]
+            for item in row:
+                pdf.cell(40, 10, txt=str(item), border=1)
+            pdf.ln(10)
+        pdf.ln(10)
+
+    add_dataframe_to_pdf(pdf, dailymovers.head(20), "Top 20 Daily Movers")
+    add_dataframe_to_pdf(pdf, dailymovers.tail(20), "Top 20 Daily Losers")
+    add_dataframe_to_pdf(pdf, pricetracker, "Top 20 Medium Term Price Change (Growth)")
+    add_dataframe_to_pdf(pdf, pricetrackerloss, "Top 20 Medium Term Price Change (Loss)")
+    add_dataframe_to_pdf(pdf, p_e, "Growth Potential Based on Analyst Recommendations")
+    add_dataframe_to_pdf(pdf, exposure.head(20), "Top 20 Financial Exposure")
+    add_dataframe_to_pdf(pdf, cap_return.head(20), "Top 20 Return on Invested Capital")
+    add_dataframe_to_pdf(pdf, fund_data.head(20), "Top 20 Fundamental Data")
+
+    pdf.output("report.pdf")
+    logging.info("PDF report generated successfully")
 
     logging.info("Script completed successfully")
 
