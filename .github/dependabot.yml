@@ -8,7 +8,6 @@ registries:
   github:
     type: git
     url: https://github.com/
-    replaces-base: true
     username: x-access-token
     password: ${{ secrets.DEPENDABOT }}
 updates:
