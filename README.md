@@ -51,3 +51,37 @@ If you would like to contribute to this repository, please follow these steps:
 5. Create a pull request to the main repository
 
 Please ensure that your code follows the existing coding style and includes appropriate tests.
+
+## GitHub Pages
+
+This repository is configured to publish portfolio analysis results via GitHub Pages. After running `parser.py`, the analysis tables are automatically exported as HTML files to the `docs/` directory and can be viewed online.
+
+### Viewing the Results
+
+Visit the GitHub Pages site to view the latest portfolio analysis:
+- **Live Site**: `https://[username].github.io/dataparsing/` (replace [username] with the repository owner)
+- **Daily Movers**: View daily gainers and losers based on 1-day price changes
+- **Price Tracker**: View 6-month performance analysis with top and bottom performers
+
+### How it Works
+
+1. Run `python parser.py` to process the CSV data and generate analysis
+2. The script automatically exports `dailymovers` and `pricetracker` DataFrames as HTML tables to `docs/`
+3. The `docs/index.html` displays both tables in a user-friendly format with iframes
+4. Push changes to GitHub to update the live GitHub Pages site
+5. GitHub Pages automatically serves the updated content
+
+### Local Testing
+
+To view the results locally before pushing:
+```sh
+# Run the parser to generate HTML tables
+python parser.py
+
+# Open the results in your browser
+open docs/index.html  # macOS
+# or
+start docs/index.html  # Windows
+# or
+xdg-open docs/index.html  # Linux
+```
