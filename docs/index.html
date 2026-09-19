@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Portfolio Positions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    @import url('https://fonts.googleapis.com/css?family=Inter:400,600&display=swap');
+
+    html, body {
+      background: radial-gradient(ellipse at top left, #232325 80%, #19191a 100%);
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      color: #f3f3f3;
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      letter-spacing: 0.01em;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    .positions-table-wrapper {
+      max-width: 1080px;
+      margin: 46px auto 0 auto;
+      background: transparent;
+    }
+    .table-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: -3.1em;
+      position: relative;
+      z-index: 10;
+      padding-right: 6px;
+    }
+    .pill-btn {
+      background: #242426;
+      color: #fff;
+      border: 1px solid #47474b;
+      border-radius: 15px;
+      font-size: 0.97em;
+      padding: 0.31em 1.15em;
+      margin-left: 0.45em;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+      box-shadow: 0 1px 0 0 #1a1a1a;
+      transition: background 0.1s, border 0.1s;
+      vertical-align: middle;
+    }
+    .pill-btn:hover {
+      background: #323234;
+      border-color: #5b5b5c;
+      color: #e3ff7a;
+    }
+    .positions-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: linear-gradient(0deg, #222226 0%, #232325 100%);
+      border-radius: 12px;
+      box-shadow: 0 2px 12px 0 #16161630;
+      margin-top: 0.7em;
+      overflow: hidden;
+    }
+    .positions-table th, .positions-table td {
+      padding: 0.64em 1em 0.64em 1em;
+      font-size: 0.97em;
+      border: none;
+      white-space: nowrap;
+    }
+    .positions-table thead {
+      box-shadow: 0 2px 10px 0 #18181870;
+    }
+    .positions-table thead tr {
+      background: linear-gradient(0deg, #2b2b2d 90%, #313133 100%);
+    }
+    .positions-table th {
+      font-weight: 700;
+      color: #fff;
+      background: none;
+      border-bottom: 1.5px solid #36363a;
+      text-align: left;
+      font-size: 1.04em;
+      padding-top: 1.18em;
+      padding-bottom: 1.18em;
+      box-shadow: 0 1px 0 0 #232325;
+      /* Rounded corners for first and last headers */
+    }
+    .positions-table th:first-child {
+      border-top-left-radius: 12px;
+    }
+    .positions-table th:last-child {
+      border-top-right-radius: 12px;
+    }
+    .positions-table tbody tr {
+      background: none;
+      border-radius: 7px;
+      transition: background 0.11s;
+    }
+    .positions-table tbody tr:hover {
+      background: #28282c;
+    }
+    .positions-table td {
+      color: #ececec;
+      border-bottom: 1px solid #25262b;
+      font-weight: 400;
+      vertical-align: middle;
+      padding-top: 0.64em;
+      padding-bottom: 0.64em;
+    }
+    .positions-table td.symbol {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      font-size: 1.03em;
+    }
+    .right, .positions-table td.right {
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
+    /* P&L and percent coloring with arrows */
+    .pos, .pos-pct {
+      color: #e3ff7a !important;
+      font-weight: 600;
+    }
+    .neg, .neg-pct {
+      color: #ff7676 !important;
+      font-weight: 600;
+    }
+    .pos-arrow, .neg-arrow {
+      font-size: 1em;
+      vertical-align: middle;
+      margin-right: 2px;
+      display: inline-block;
+    }
+    .pos-arrow { color: #e3ff7a; }
+    .neg-arrow { color: #ff7676; }
+    /* Hide scrollbars but allow scroll for overflow */
+    .table-scroll-x {
+      overflow-x: auto;
+      scrollbar-width: thin;
+      scrollbar-color: #333 #19191a;
+    }
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .positions-table-wrapper { padding: 0 3vw; }
+      .positions-table th, .positions-table td { padding: 0.4em 0.5em; }
+    }
+    @media (max-width: 600px) {
+      .positions-table-wrapper { padding: 0 1vw; }
+      .positions-table th, .positions-table td { padding: 0.33em 0.2em; }
+      .table-actions { padding-right: 0.5em; }
+    }
+  </style>
+</head>
+<body>
+  <div class="positions-table-wrapper">
+    <div class="table-actions">
+      <button class="pill-btn">Close</button>
+      <button class="pill-btn">Set stop</button>
+    </div>
+    <div class="table-scroll-x">
+      <table class="positions-table" id="positions-table">
+        <!-- Table content dynamically loaded from dailymovers.html or parser.py output -->
+      </table>
+    </div>
+  </div>
+  <script>
+    // Helper: colorize P&L cells and add arrows
+    function colorizeTable(table) {
+      if (!table) return;
+      // Try to color cells that look like P&L (pos/neg values in $ or %)
+      const rows = table.querySelectorAll('tbody tr');
+      rows.forEach(row => {
+        row.querySelectorAll('td').forEach((cell, idx) => {
+          const txt = cell.textContent.trim();
+          // Symbol column
+          if (idx === 0) cell.classList.add('symbol');
+          // Right-align numeric columns except the first
+          if (idx > 0) cell.classList.add('right');
+          // Detect P&L positive/negative for $ or %
+          if (/^-?\$?-?\d/.test(txt)) {
+            let val = parseFloat(txt.replace(/[^0-9\-.]/g, ''));
+            // 1D open P&L, 1D open P&L %, Open P&L, Open P&L % positions
+            if ((idx === 6 || idx === 7 || idx === 8 || idx === 9)) {
+              if (!isNaN(val)) {
+                if (val > 0) {
+                  cell.classList.add(idx % 2 === 1 ? 'pos-pct' : 'pos');
+                  cell.innerHTML = `<span class="pos-arrow">&#9650;</span>` + cell.innerHTML;
+                } else if (val < 0) {
+                  cell.classList.add(idx % 2 === 1 ? 'neg-pct' : 'neg');
+                  cell.innerHTML = `<span class="neg-arrow">&#9660;</span>` + cell.innerHTML;
+                }
+              }
+            }
+          }
+        });
+      });
+    }
+    // Fetch and inject table HTML fragment
+    function loadTable(url) {
+      fetch(url)
+        .then(r => r.ok ? r.text() : '')
+        .then(html => {
+          // Remove wrapper if present, extract <tbody> and <thead>
+          let temp = document.createElement('div');
+          temp.innerHTML = html;
+          let orig = temp.querySelector('table');
+          const table = document.getElementById('positions-table');
+          if (orig) {
+            table.innerHTML = orig.innerHTML;
+            // Copy over th/td classes (optional, for styling)
+            let ths = orig.querySelectorAll('th');
+            table.querySelectorAll('th').forEach((th, i) => {
+              if (ths[i]) th.className = ths[i].className;
+            });
+            let tds = orig.querySelectorAll('td');
+            table.querySelectorAll('td').forEach((td, i) => {
+              if (tds[i]) td.className = tds[i].className;
+            });
+          } else {
+            table.innerHTML = html;
+          }
+          colorizeTable(table);
+        });
+    }
+    // By default, load dailymovers.html (change to pricetracker.html as needed)
+    loadTable('dailymovers.html');
+    // To support switching tables, you can add more buttons and use loadTable('pricetracker.html');
+  </script>
+</body>
+</html>

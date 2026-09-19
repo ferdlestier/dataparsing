@@ -3,6 +3,7 @@
 
 import pandas as pd
 import logging  # Import logging module
+import os  # Import os module for directory operations
 
 # Configure logging
 logging.basicConfig(filename='parser.log', level=logging.DEBUG, format='%(asctime)s:%(levelname)s:%(message)s')
@@ -79,6 +80,28 @@ try:
     logging.info("Top 20 daily loss calculated")
     logging.info(f"Number of records processed for daily loss: {len(dailymovers)}")
 
+    # Ensure docs directory exists
+    os.makedirs('docs', exist_ok=True)
+    
+    # Export dailymovers top 20 and bottom 20 as HTML
+    dailymovers_top20 = dailymovers.head(20)
+    dailymovers_bottom20 = dailymovers.tail(20)
+    
+    # Combine top gainers and losers for the dailymovers table
+    dailymovers_combined = pd.concat([
+        dailymovers_top20,
+        pd.DataFrame([['---'] * len(dailymovers_top20.columns)], 
+                    columns=dailymovers_top20.columns, 
+                    index=['--- SEPARATOR ---']),
+        dailymovers_bottom20
+    ])
+    
+    dailymovers_combined.to_html('docs/dailymovers.html', 
+                                table_id='dailymovers-table',
+                                classes='table table-striped table-bordered',
+                                escape=False)
+    logging.info("Daily movers HTML table exported to docs/dailymovers.html")
+
     # Now following the same steps but sorting by the column 'chgPct6M' which represents the change in price for the last 6 months.
     pricetracker = port[colsprice].sort_values(by='chgPct6M',ascending=False).set_index('ticker').head(20).fillna('-')
     pricetracker
@@ -89,6 +112,21 @@ try:
     pricetrackerloss
     logging.info("Medium term price change (loss) calculated")
     logging.info(f"Number of records processed for medium term price change (loss): {len(pricetrackerloss)}")
+
+    # Export pricetracker as HTML (combining top performers and worst performers)
+    pricetracker_combined = pd.concat([
+        pricetracker,
+        pd.DataFrame([['---'] * len(pricetracker.columns)], 
+                    columns=pricetracker.columns, 
+                    index=['--- SEPARATOR ---']),
+        pricetrackerloss
+    ])
+    
+    pricetracker_combined.to_html('docs/pricetracker.html',
+                                 table_id='pricetracker-table',
+                                 classes='table table-striped table-bordered',
+                                 escape=False)
+    logging.info("Price tracker HTML table exported to docs/pricetracker.html")
 
     # Creating a new column to calculate the difference between Analyst Recommendations and last price
     P_t = port[colsprice].set_index('ticker').fillna('0')
